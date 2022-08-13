@@ -1,9 +1,4 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "plugin:import/recommended",
-    "prettier",
-    "plugin:@next/next/recommended",
-    "next"
-  ]
+  "extends": ["next/core-web-vitals", "next"],
+  "rules": {}
 }
