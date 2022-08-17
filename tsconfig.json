@@ -16,7 +16,8 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@generated": ["./src/@generated/*"]
+      "@generated": ["./src/@generated/*"],
+      "@variable": ["styles/variable.scss"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
