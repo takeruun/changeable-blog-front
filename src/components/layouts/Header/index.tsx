@@ -16,10 +16,10 @@ const Header: React.FC = () => {
             </Link>
 
             <div className={styles.right__content}>
-              <Link href={'/top'}>
+              <Link href={'/'}>
                 <h2>ホーム</h2>
               </Link>
-              <Link href={'/top'}>
+              <Link href={'/about'}>
                 <h2>このブログについて</h2>
               </Link>
             </div>
