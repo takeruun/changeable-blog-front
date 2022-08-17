@@ -3,9 +3,9 @@ import styles from './styles.module.scss';
 
 const Header: React.FC = () => {
   return (
-    <div className={styles.header}>
-      <div className={styles.container}>
-        <header>
+    <header>
+      <div className={styles.header}>
+        <div className={styles.container}>
           <div className={styles.header__bar} />
           <div className={styles.main}>
             <Link href={'/'}>
@@ -24,9 +24,9 @@ const Header: React.FC = () => {
               </Link>
             </div>
           </div>
-        </header>
+        </div>
       </div>
-    </div>
+    </header>
   );
 };
 
