@@ -11,7 +11,6 @@ const Header: React.FC = () => {
             <Link href={'/'}>
               <div className={styles.left__content}>
                 <h1>変幻自在ブログ</h1>
-                <p>時と場合でかわるブログ</p>
               </div>
             </Link>
 
