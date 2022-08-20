@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@generated": ["./src/@generated/*"],
-      "@variable": ["styles/variable.scss"]
+      "@variable": ["styles/variable.scss"],
+      "@ui": ["src/components/ui/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
