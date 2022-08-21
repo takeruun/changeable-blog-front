@@ -1,0 +1,21 @@
+@import '@variable';
+
+.search__field {
+  position: relative;
+  border: 1px solid var(--c-main);
+  border-radius: 5px;
+  padding: 4px 8px;
+  width: 150px;
+
+  input {
+    outline: none;
+    position: absolute;
+    width: 100%;
+    padding-left: 25px;
+  }
+}
+
+.icon {
+  width: 1.2em;
+  height: 1.2em;
+}

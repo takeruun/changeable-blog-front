@@ -419,3 +419,7 @@ th {
   text-align: left;
   font-weight: bold;
 }
+
+input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
