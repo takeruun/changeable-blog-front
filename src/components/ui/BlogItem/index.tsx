@@ -31,11 +31,12 @@ const BlogItem: React.FC<Props> = (props: Props) => {
   return (
     <div {...commonClass(props)}>
       <div className={styles.container}>
-        <div className={styles.image}>
+        <div className={styles.image__content}>
           <Image
+            className={styles.image}
             src={imagePath ?? '/sample_thumbnail.png'}
-            width={'100%'}
-            height={'100%'}
+            layout='fill'
+            objectFit='contain'
             alt={`${id}の画像`}
           />
         </div>

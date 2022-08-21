@@ -1,4 +1,3 @@
-import * as nextImage from 'next/image';
 import 'styles/globals.scss';
 
 export const parameters = {
@@ -10,8 +9,3 @@ export const parameters = {
     }
   }
 };
-
-Object.defineProperty(nextImage, 'default', {
-  configurable: true,
-  value: (props) => <img {...props} />
-});
