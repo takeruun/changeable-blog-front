@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { commonArgsType } from '../utilties/commonClass';
+import { commonArgsType, commonParameters } from '../utilties/commonStorybook';
 import SearchField, { Props } from './index';
 
 export default {
@@ -13,6 +13,9 @@ export default {
     required: { control: 'boolean' },
     disabled: { control: 'boolean' },
     ...commonArgsType
+  },
+  parameters: {
+    ...commonParameters.parameters
   }
 } as ComponentMeta<typeof SearchField>;
 

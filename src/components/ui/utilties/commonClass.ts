@@ -1,4 +1,4 @@
-import marginClasses, { MarginProps } from './marginClasses';
+import marginClasses, { MarginProps, margins } from './marginClasses';
 
 export type CommonProps = {
   'data-test'?: string;

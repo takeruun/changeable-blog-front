@@ -1,17 +1,20 @@
-export type MarginSize =
-  | 0.25
-  | 0.5
-  | 1
-  | 1.5
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 'auto';
+export const margins = [
+  0.25,
+  0.5,
+  1,
+  1.5,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  'auto'
+] as const;
+
+export type MarginSize = typeof margins[number];
 
 export type MarginProps = {
   /**
