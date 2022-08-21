@@ -5,37 +5,18 @@ module.exports = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@storybook/addon-interactions'
+    '@storybook/addon-interactions',
+    'storybook-addon-next'
   ],
   framework: '@storybook/react',
   core: {
     builder: '@storybook/builder-webpack5'
   },
   staticDirs: ['../public'],
+  sassOptions: {
+    includePaths: [path.join(__dirname, '../styles')]
+  },
   webpackFinal: async (config) => {
-    config.module.rules.push(
-      {
-        test: /\.scss$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1, // 1 => postcss-loader
-              modules: {
-                localIdentName: '[local]___[hash:base64:2]'
-              }
-            }
-          },
-          'sass-loader'
-        ]
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      }
-    );
-
     // storybookで絶対パスimportを可能にする設定
     config.resolve.alias['@variable'] = path.resolve(
       __dirname,
