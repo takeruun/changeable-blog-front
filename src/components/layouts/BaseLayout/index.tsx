@@ -11,7 +11,7 @@ const BaseLayout: React.FC<Props> = (props: Props) => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <div>{children}</div>
       <Footer />
     </>
   );
