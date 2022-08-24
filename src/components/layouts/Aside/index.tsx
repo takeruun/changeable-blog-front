@@ -1,5 +1,6 @@
 import SearchField from '@ui/SearchField';
 import Profile from './Profile';
+import Archive from './Archive';
 import styles from './styles.module.scss';
 
 const Aside: React.FC = () => {
@@ -10,6 +11,9 @@ const Aside: React.FC = () => {
       </div>
       <div className={styles.profile}>
         <Profile name={'橋本文瑠'} engName={'Takeru Hashimoto'} />
+      </div>
+      <div className={styles.archive}>
+        <Archive />
       </div>
     </aside>
   );

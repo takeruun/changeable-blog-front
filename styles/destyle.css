@@ -423,3 +423,7 @@ th {
 input::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
+
+li {
+  list-style: none;
+}
