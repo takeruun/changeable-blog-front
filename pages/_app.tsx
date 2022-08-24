@@ -1,10 +1,15 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import '../styles/globals.scss';
+import type { AppProps } from 'next/app';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  gql
+} from '@apollo/client';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/query',
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache()
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -15,4 +20,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp
+export default MyApp;

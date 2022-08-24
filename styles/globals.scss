@@ -1,3 +1,17 @@
+@import 'destyle.css';
+
+:root {
+  --c-main: #36aa28;
+  --c-sub: #91de89;
+  --c-primary: #00ee97;
+  --c-error: #ef5e0c;
+  --c-back: #f0fdec;
+  --c-line: #c4c4c4;
+  --c-border: #c8c8c8;
+
+  --f-family: Hiragino Sans CNS;
+}
+
 html,
 body {
   padding: 0;
@@ -13,14 +27,4 @@ a {
 
 * {
   box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
 }

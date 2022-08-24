@@ -1,0 +1,16 @@
+@import '@variable';
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  margin: 40px auto 20px;
+  width: 1060px;
+
+  .article {
+    width: 810px;
+  }
+
+  .aside {
+    width: 250px;
+  }
+}

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "PORT=3001 next start",
     "lint": "next lint",
     "graphql-codegen": "graphql-codegen --config codegen.yml",
     "storybook": "start-storybook -p 6006",
@@ -16,7 +16,9 @@
     "graphql": "^16.5.0",
     "next": "12.2.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
+    "sass": "^1.54.4"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
@@ -39,6 +41,7 @@
     "babel-loader": "^8.2.5",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.3",
+    "storybook-addon-next": "^1.6.7",
     "typescript": "4.7.4"
   }
 }
