@@ -25,7 +25,9 @@ const BlogItemTemplate: ComponentStory<typeof SearchField> = (args) => {
     setValue(e.target.value);
 
   return (
-    <SearchField {...args} value={value ?? args.value} onChange={onChange} />
+    <div style={{ width: '170px' }}>
+      <SearchField {...args} value={value ?? args.value} onChange={onChange} />
+    </div>
   );
 };
 
