@@ -5,7 +5,20 @@ import HomepageContainer from 'src/components/pages/HomePage';
 const HomePage: NextPage = () => {
   return (
     <BaseLayout>
-      <HomepageContainer />
+      <HomepageContainer
+        blogItems={[
+          {
+            id: '1',
+            title: 'sample',
+            description: '',
+            body: '',
+            imagePath: '',
+            tags: [{ id: '1', name: 'tag1', createdAt: '', updatedAt: '' }],
+            createdAt: '',
+            updatedAt: ''
+          }
+        ]}
+      />
     </BaseLayout>
   );
 };
