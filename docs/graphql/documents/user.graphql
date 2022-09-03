@@ -1,0 +1,12 @@
+type SignUp {
+  name: String!
+  email: String!
+  password: String!
+  postalCode: String!
+}
+
+mutation SignUp($input: SignUp!) {
+  signUp(input: $input) {
+    name
+  }
+}
