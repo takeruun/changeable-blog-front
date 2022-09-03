@@ -15,16 +15,29 @@ export type Scalars = {
   Float: number;
 };
 
-export type LoginUser = {
-  __typename?: 'LoginUser';
+export type BlogList = {
+  __typename?: 'BlogList';
   id: Scalars['String'];
-  name: Scalars['String'];
+  tags: Array<Scalars['String']>;
+  thumbnailImagePath: Scalars['String'];
+  title: Scalars['String'];
+};
+
+export type Login = {
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
   _empty?: Maybe<Scalars['String']>;
-  signUp: LoginUser;
+  login: User;
+  signUp: User;
+};
+
+
+export type MutationLoginArgs = {
+  input: Login;
 };
 
 
@@ -35,6 +48,8 @@ export type MutationSignUpArgs = {
 export type Query = {
   __typename?: 'Query';
   _empty?: Maybe<Scalars['String']>;
+  blogList: Array<BlogList>;
+  getMyUser: User;
 };
 
 export type SignUp = {
@@ -44,14 +59,64 @@ export type SignUp = {
   postalCode: Scalars['String'];
 };
 
+export type User = {
+  __typename?: 'User';
+  createdAt: Scalars['String'];
+  id: Scalars['String'];
+  name: Scalars['String'];
+  postalCode: Scalars['String'];
+};
+
+export type BlogListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type BlogListQuery = { __typename?: 'Query', blogList: Array<{ __typename?: 'BlogList', id: string, title: string, tags: Array<string>, thumbnailImagePath: string }> };
+
 export type SignUpMutationVariables = Exact<{
   input: SignUp;
 }>;
 
 
-export type SignUpMutation = { __typename?: 'Mutation', signUp: { __typename?: 'LoginUser', name: string } };
+export type SignUpMutation = { __typename?: 'Mutation', signUp: { __typename?: 'User', name: string } };
 
 
+export const BlogListDocument = gql`
+    query BlogList {
+  blogList {
+    id
+    title
+    tags
+    thumbnailImagePath
+  }
+}
+    `;
+
+/**
+ * __useBlogListQuery__
+ *
+ * To run a query within a React component, call `useBlogListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBlogListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useBlogListQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useBlogListQuery(baseOptions?: Apollo.QueryHookOptions<BlogListQuery, BlogListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<BlogListQuery, BlogListQueryVariables>(BlogListDocument, options);
+      }
+export function useBlogListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlogListQuery, BlogListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<BlogListQuery, BlogListQueryVariables>(BlogListDocument, options);
+        }
+export type BlogListQueryHookResult = ReturnType<typeof useBlogListQuery>;
+export type BlogListLazyQueryHookResult = ReturnType<typeof useBlogListLazyQuery>;
+export type BlogListQueryResult = Apollo.QueryResult<BlogListQuery, BlogListQueryVariables>;
 export const SignUpDocument = gql`
     mutation SignUp($input: SignUp!) {
   signUp(input: $input) {

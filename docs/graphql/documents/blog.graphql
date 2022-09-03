@@ -1,0 +1,8 @@
+query BlogList {
+  blogList {
+    id
+    title
+    tags
+    thumbnailImagePath
+  }
+}
