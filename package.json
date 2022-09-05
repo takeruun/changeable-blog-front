@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "PORT=3001 next start",
-    "lint": "next lint",
+    "lint": "yarn lint:eslint && yarn lint:prettier",
+    "fix": "yarn fix:eslint && yarn fix:prettier",
+    "lint:eslint": "eslint 'src/**/*.{ts,tsx}'",
+    "lint:prettier": "prettier --check 'src/**/*.{ts,tsx}'",
+    "fix:eslint": "eslint --fix 'src/**/*.{ts,tsx}'",
+    "fix:prettier": "prettier --write 'src/**/*.{ts,tsx}'",
     "graphql-codegen": "graphql-codegen --config codegen.yml",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -41,6 +46,9 @@
     "babel-loader": "^8.2.5",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.3",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1",
     "storybook-addon-next": "^1.6.7",
     "typescript": "4.7.4"
   }
