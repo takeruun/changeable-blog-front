@@ -1,5 +1,5 @@
-query BlogList($offset: Int!, $limit: Int!) {
-  blogList(input: { offset: $offset, limit: $limit }) {
+query BlogList($pageNo: Int!, $limit: Int) {
+  blogList(input: { pageNo: $pageNo, limit: $limit }) {
     blogList {
       id
       title

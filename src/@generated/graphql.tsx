@@ -52,8 +52,8 @@ export type MutationSignUpArgs = {
 };
 
 export type PageCondition = {
-  limit: Scalars['Int'];
-  offset: Scalars['Int'];
+  limit?: InputMaybe<Scalars['Int']>;
+  pageNo: Scalars['Int'];
   query?: InputMaybe<Scalars['String']>;
 };
 
@@ -92,8 +92,8 @@ export type User = {
 };
 
 export type BlogListQueryVariables = Exact<{
-  offset: Scalars['Int'];
-  limit: Scalars['Int'];
+  pageNo: Scalars['Int'];
+  limit?: InputMaybe<Scalars['Int']>;
 }>;
 
 
@@ -108,8 +108,8 @@ export type SignUpMutation = { __typename?: 'Mutation', signUp: { __typename?: '
 
 
 export const BlogListDocument = gql`
-    query BlogList($offset: Int!, $limit: Int!) {
-  blogList(input: {offset: $offset, limit: $limit}) {
+    query BlogList($pageNo: Int!, $limit: Int) {
+  blogList(input: {pageNo: $pageNo, limit: $limit}) {
     blogList {
       id
       title
@@ -132,7 +132,7 @@ export const BlogListDocument = gql`
  * @example
  * const { data, loading, error } = useBlogListQuery({
  *   variables: {
- *      offset: // value for 'offset'
+ *      pageNo: // value for 'pageNo'
  *      limit: // value for 'limit'
  *   },
  * });
