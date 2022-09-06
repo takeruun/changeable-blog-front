@@ -1,0 +1,14 @@
+@import '@variable';
+
+.icon_button {
+  padding: 0 8px;
+  min-width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--c-sub);
+  border-radius: 30%;
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
