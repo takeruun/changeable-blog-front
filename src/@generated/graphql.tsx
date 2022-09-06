@@ -17,10 +17,16 @@ export type Scalars = {
 
 export type BlogList = {
   __typename?: 'BlogList';
-  id: Scalars['String'];
+  id: Scalars['ID'];
   tags: Array<Scalars['String']>;
   thumbnailImagePath: Scalars['String'];
   title: Scalars['String'];
+};
+
+export type BlogListConnection = {
+  __typename?: 'BlogListConnection';
+  blogList: Array<BlogList>;
+  pageInfo: PageInfo;
 };
 
 export type Login = {
@@ -45,11 +51,29 @@ export type MutationSignUpArgs = {
   input: SignUp;
 };
 
+export type PageCondition = {
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  query?: InputMaybe<Scalars['String']>;
+};
+
+export type PageInfo = {
+  __typename?: 'PageInfo';
+  pageNo: Scalars['Int'];
+  /** 検索結果の全件数 */
+  totalCount: Scalars['Int'];
+};
+
 export type Query = {
   __typename?: 'Query';
   _empty?: Maybe<Scalars['String']>;
-  blogList: Array<BlogList>;
+  blogList: BlogListConnection;
   getMyUser: User;
+};
+
+
+export type QueryBlogListArgs = {
+  input: PageCondition;
 };
 
 export type SignUp = {
@@ -67,10 +91,13 @@ export type User = {
   postalCode: Scalars['String'];
 };
 
-export type BlogListQueryVariables = Exact<{ [key: string]: never; }>;
+export type BlogListQueryVariables = Exact<{
+  offset: Scalars['Int'];
+  limit: Scalars['Int'];
+}>;
 
 
-export type BlogListQuery = { __typename?: 'Query', blogList: Array<{ __typename?: 'BlogList', id: string, title: string, tags: Array<string>, thumbnailImagePath: string }> };
+export type BlogListQuery = { __typename?: 'Query', blogList: { __typename?: 'BlogListConnection', blogList: Array<{ __typename?: 'BlogList', id: string, title: string, tags: Array<string>, thumbnailImagePath: string }> } };
 
 export type SignUpMutationVariables = Exact<{
   input: SignUp;
@@ -81,12 +108,14 @@ export type SignUpMutation = { __typename?: 'Mutation', signUp: { __typename?: '
 
 
 export const BlogListDocument = gql`
-    query BlogList {
-  blogList {
-    id
-    title
-    tags
-    thumbnailImagePath
+    query BlogList($offset: Int!, $limit: Int!) {
+  blogList(input: {offset: $offset, limit: $limit}) {
+    blogList {
+      id
+      title
+      tags
+      thumbnailImagePath
+    }
   }
 }
     `;
@@ -103,10 +132,12 @@ export const BlogListDocument = gql`
  * @example
  * const { data, loading, error } = useBlogListQuery({
  *   variables: {
+ *      offset: // value for 'offset'
+ *      limit: // value for 'limit'
  *   },
  * });
  */
-export function useBlogListQuery(baseOptions?: Apollo.QueryHookOptions<BlogListQuery, BlogListQueryVariables>) {
+export function useBlogListQuery(baseOptions: Apollo.QueryHookOptions<BlogListQuery, BlogListQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<BlogListQuery, BlogListQueryVariables>(BlogListDocument, options);
       }

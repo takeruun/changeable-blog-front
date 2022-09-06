@@ -1,8 +1,10 @@
-query BlogList {
-  blogList {
-    id
-    title
-    tags
-    thumbnailImagePath
+query BlogList($offset: Int!, $limit: Int!) {
+  blogList(input: { offset: $offset, limit: $limit }) {
+    blogList {
+      id
+      title
+      tags
+      thumbnailImagePath
+    }
   }
 }
