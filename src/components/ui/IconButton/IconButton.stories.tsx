@@ -8,6 +8,9 @@ export default {
   title: 'IconButton',
   component: IconButton,
   argTypes: {
+    label: { control: 'text' },
+    className: { control: 'text' },
+    disabled: { control: 'boolean' },
     ...commonArgsType
   },
   parameters: {
@@ -21,6 +24,7 @@ const IconButtonTemplate: ComponentStory<typeof IconButton> = (args) => {
 
 export const Default = IconButtonTemplate.bind({});
 const defaultArgs: Props = {
-  IconComponent: AiOutlineUsb
+  IconComponent: AiOutlineUsb,
+  type: 'button'
 };
 Default.args = defaultArgs;
