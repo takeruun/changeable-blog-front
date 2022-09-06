@@ -15,8 +15,10 @@ const PageButton: React.FC<Props> = (props) => {
 
   return (
     <button
-      {...commonClass(props)}
-      className={current ? styles.page_button__current : styles.page_button}
+      {...commonClass(
+        props,
+        current ? styles.page_button__current : styles.page_button
+      )}
       onClick={onClick}
       type='button'
     >
