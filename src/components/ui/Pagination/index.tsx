@@ -25,7 +25,7 @@ const Pagination: React.FC<Props> = (props) => {
         if (pages.length > 1 && (i == 0 || pages.length - 1 == i)) {
           return i == 0 ? (
             <>
-              <IconButton IconComponent={GoChevronLeft} />
+              <IconButton type={'button'} IconComponent={GoChevronLeft} />
               <PageButton current={page == currentPage} ml={1} mr={1}>
                 {page}
               </PageButton>
@@ -35,7 +35,7 @@ const Pagination: React.FC<Props> = (props) => {
               <PageButton current={page == currentPage} mr={1}>
                 {page}
               </PageButton>
-              <IconButton IconComponent={GoChevronRight} />
+              <IconButton type={'button'} IconComponent={GoChevronRight} />
             </>
           );
         } else {
