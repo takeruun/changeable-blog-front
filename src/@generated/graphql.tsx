@@ -52,7 +52,7 @@ export type MutationSignUpArgs = {
 };
 
 export type PageCondition = {
-  limit?: InputMaybe<Scalars['Int']>;
+  limit: Scalars['Int'];
   pageNo: Scalars['Int'];
   query?: InputMaybe<Scalars['String']>;
 };
@@ -69,11 +69,17 @@ export type Query = {
   _empty?: Maybe<Scalars['String']>;
   blogList: BlogListConnection;
   getMyUser: User;
+  recommendBlogList: RecommendBlogListConnection;
 };
 
 
 export type QueryBlogListArgs = {
   input: PageCondition;
+};
+
+export type RecommendBlogListConnection = {
+  __typename?: 'RecommendBlogListConnection';
+  nodes: Array<BlogList>;
 };
 
 export type SignUp = {
@@ -93,11 +99,16 @@ export type User = {
 
 export type BlogListQueryVariables = Exact<{
   pageNo: Scalars['Int'];
-  limit?: InputMaybe<Scalars['Int']>;
+  limit: Scalars['Int'];
 }>;
 
 
 export type BlogListQuery = { __typename?: 'Query', blogList: { __typename?: 'BlogListConnection', nodes: Array<{ __typename?: 'BlogList', id: string, title: string, tags: Array<string>, thumbnailImagePath: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } } };
+
+export type RecommendBlogListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RecommendBlogListQuery = { __typename?: 'Query', recommendBlogList: { __typename?: 'RecommendBlogListConnection', nodes: Array<{ __typename?: 'BlogList', id: string, title: string, tags: Array<string>, thumbnailImagePath: string }> } };
 
 export type SignUpMutationVariables = Exact<{
   input: SignUp;
@@ -108,7 +119,7 @@ export type SignUpMutation = { __typename?: 'Mutation', signUp: { __typename?: '
 
 
 export const BlogListDocument = gql`
-    query BlogList($pageNo: Int!, $limit: Int) {
+    query BlogList($pageNo: Int!, $limit: Int!) {
   blogList(input: {pageNo: $pageNo, limit: $limit}) {
     nodes {
       id
@@ -151,6 +162,45 @@ export function useBlogListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<B
 export type BlogListQueryHookResult = ReturnType<typeof useBlogListQuery>;
 export type BlogListLazyQueryHookResult = ReturnType<typeof useBlogListLazyQuery>;
 export type BlogListQueryResult = Apollo.QueryResult<BlogListQuery, BlogListQueryVariables>;
+export const RecommendBlogListDocument = gql`
+    query RecommendBlogList {
+  recommendBlogList {
+    nodes {
+      id
+      title
+      tags
+      thumbnailImagePath
+    }
+  }
+}
+    `;
+
+/**
+ * __useRecommendBlogListQuery__
+ *
+ * To run a query within a React component, call `useRecommendBlogListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRecommendBlogListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRecommendBlogListQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useRecommendBlogListQuery(baseOptions?: Apollo.QueryHookOptions<RecommendBlogListQuery, RecommendBlogListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<RecommendBlogListQuery, RecommendBlogListQueryVariables>(RecommendBlogListDocument, options);
+      }
+export function useRecommendBlogListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RecommendBlogListQuery, RecommendBlogListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<RecommendBlogListQuery, RecommendBlogListQueryVariables>(RecommendBlogListDocument, options);
+        }
+export type RecommendBlogListQueryHookResult = ReturnType<typeof useRecommendBlogListQuery>;
+export type RecommendBlogListLazyQueryHookResult = ReturnType<typeof useRecommendBlogListLazyQuery>;
+export type RecommendBlogListQueryResult = Apollo.QueryResult<RecommendBlogListQuery, RecommendBlogListQueryVariables>;
 export const SignUpDocument = gql`
     mutation SignUp($input: SignUp!) {
   signUp(input: $input) {

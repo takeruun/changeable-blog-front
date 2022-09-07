@@ -1,11 +1,7 @@
 import '../styles/globals.scss';
+import { ApolloProvider } from '@apollo/client';
 import type { AppProps } from 'next/app';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-
-const client = new ApolloClient({
-  uri: 'http://localhost:3000/query',
-  cache: new InMemoryCache()
-});
+import { client } from 'src/lib/apollo-client';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
