@@ -1,10 +1,13 @@
 query BlogList($pageNo: Int!, $limit: Int) {
   blogList(input: { pageNo: $pageNo, limit: $limit }) {
-    blogList {
+    nodes {
       id
       title
       tags
       thumbnailImagePath
+    }
+    pageInfo {
+      totalCount
     }
   }
 }

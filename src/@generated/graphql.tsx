@@ -25,7 +25,7 @@ export type BlogList = {
 
 export type BlogListConnection = {
   __typename?: 'BlogListConnection';
-  blogList: Array<BlogList>;
+  nodes: Array<BlogList>;
   pageInfo: PageInfo;
 };
 
@@ -97,7 +97,7 @@ export type BlogListQueryVariables = Exact<{
 }>;
 
 
-export type BlogListQuery = { __typename?: 'Query', blogList: { __typename?: 'BlogListConnection', blogList: Array<{ __typename?: 'BlogList', id: string, title: string, tags: Array<string>, thumbnailImagePath: string }> } };
+export type BlogListQuery = { __typename?: 'Query', blogList: { __typename?: 'BlogListConnection', nodes: Array<{ __typename?: 'BlogList', id: string, title: string, tags: Array<string>, thumbnailImagePath: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } } };
 
 export type SignUpMutationVariables = Exact<{
   input: SignUp;
@@ -110,11 +110,14 @@ export type SignUpMutation = { __typename?: 'Mutation', signUp: { __typename?: '
 export const BlogListDocument = gql`
     query BlogList($pageNo: Int!, $limit: Int) {
   blogList(input: {pageNo: $pageNo, limit: $limit}) {
-    blogList {
+    nodes {
       id
       title
       tags
       thumbnailImagePath
+    }
+    pageInfo {
+      totalCount
     }
   }
 }
