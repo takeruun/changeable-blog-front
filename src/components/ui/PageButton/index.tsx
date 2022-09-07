@@ -3,10 +3,13 @@ import styles from './styles.module.scss';
 
 export type Props = {
   children?: React.ReactNode;
-
-  // 選択されているかどうか
+  /**
+   * 選択されているかどうか
+   */
   current: boolean;
-
+  /**
+   * button onClick の指定
+   */
   onClick?: React.MouseEventHandler;
 } & CommonProps;
 

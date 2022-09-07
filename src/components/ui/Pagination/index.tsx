@@ -5,17 +5,22 @@ import IconButton from '@ui/IconButton';
 import PageButton from '@ui/PageButton';
 
 export type Props = {
-  // 現在ページ
+  /**
+   * 現在ページ の指定
+   */
   currentPage: number;
-
-  // 全部で何ページか
+  /**
+   * 全部で何ページか
+   */
   totalPageNumber: number;
-
+  /**
+   * ページ変更関数
+   */
   onPageChange: (page: number) => void;
 } & CommonProps;
 
 const Pagination: React.FC<Props> = (props) => {
-  const { currentPage, totalPageNumber } = props;
+  const { currentPage, totalPageNumber, onPageChange } = props;
   const pages: number[] = [];
   for (let i = 0; i < totalPageNumber; i++) pages.push(i + 1);
 
@@ -25,22 +30,54 @@ const Pagination: React.FC<Props> = (props) => {
         if (pages.length > 1 && (i == 0 || pages.length - 1 == i)) {
           return i == 0 ? (
             <>
-              <IconButton type={'button'} IconComponent={GoChevronLeft} />
-              <PageButton current={page == currentPage} ml={1} mr={1}>
+              <IconButton
+                type={'button'}
+                IconComponent={GoChevronLeft}
+                onClick={() => {
+                  if (currentPage != 1) onPageChange(currentPage - 1);
+                }}
+              />
+              <PageButton
+                current={page == currentPage}
+                ml={1}
+                mr={1}
+                onClick={() => {
+                  if (page != currentPage) onPageChange(page);
+                }}
+              >
                 {page}
               </PageButton>
             </>
           ) : (
             <>
-              <PageButton current={page == currentPage} mr={1}>
+              <PageButton
+                current={page == currentPage}
+                mr={1}
+                onClick={() => {
+                  if (page != currentPage) onPageChange(page);
+                }}
+              >
                 {page}
               </PageButton>
-              <IconButton type={'button'} IconComponent={GoChevronRight} />
+              <IconButton
+                type={'button'}
+                IconComponent={GoChevronRight}
+                onClick={() => {
+                  if (currentPage != pages.length)
+                    onPageChange(currentPage + 1);
+                }}
+              />
             </>
           );
         } else {
           return (
-            <PageButton current={page == currentPage} mr={1}>
+            <PageButton
+              current={page == currentPage}
+              mr={1}
+              onClick={() => {
+                if (page != currentPage) onPageChange(page);
+              }}
+            >
               {page}
             </PageButton>
           );

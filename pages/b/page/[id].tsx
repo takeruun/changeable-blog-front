@@ -6,14 +6,20 @@ import { BlogList, BlogListDocument, BlogListQuery } from '@generated/graphql';
 
 type Props = {
   blogList: BlogList[];
+  currentPage: number;
+  totalCount: number;
 };
 
 const BPage: NextPage<Props> = (props) => {
-  const { blogList } = props;
+  const { blogList, currentPage, totalCount } = props;
 
   return (
     <BaseLayout>
-      <BPageContainer blogItems={blogList} />
+      <BPageContainer
+        blogItems={blogList}
+        currentPage={currentPage}
+        totalCount={totalCount}
+      />
     </BaseLayout>
   );
 };
@@ -47,7 +53,9 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 
   return {
     props: {
-      blogList: data.blogList.nodes
+      blogList: data.blogList.nodes,
+      currentPage: Number(id),
+      totalCount: data.blogList.pageInfo.totalCount
     }
   };
 };
