@@ -1,7 +1,7 @@
-import SearchField from '@ui/SearchField';
 import Profile from './Profile';
 import Archive from './Archive';
 import styles from './styles.module.scss';
+import SearchField from '@ui/SearchField';
 
 const Aside: React.FC = () => {
   return (

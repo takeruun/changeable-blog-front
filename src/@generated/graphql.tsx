@@ -2,9 +2,15 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -41,11 +47,9 @@ export type Mutation = {
   signUp: User;
 };
 
-
 export type MutationLoginArgs = {
   input: Login;
 };
-
 
 export type MutationSignUpArgs = {
   input: SignUp;
@@ -71,7 +75,6 @@ export type Query = {
   getMyUser: User;
   recommendBlogList: RecommendBlogListConnection;
 };
-
 
 export type QueryBlogListArgs = {
   input: PageCondition;
@@ -102,37 +105,61 @@ export type BlogListQueryVariables = Exact<{
   limit: Scalars['Int'];
 }>;
 
+export type BlogListQuery = {
+  __typename?: 'Query';
+  blogList: {
+    __typename?: 'BlogListConnection';
+    nodes: Array<{
+      __typename?: 'BlogList';
+      id: string;
+      title: string;
+      tags: Array<string>;
+      thumbnailImagePath: string;
+    }>;
+    pageInfo: { __typename?: 'PageInfo'; totalCount: number };
+  };
+};
 
-export type BlogListQuery = { __typename?: 'Query', blogList: { __typename?: 'BlogListConnection', nodes: Array<{ __typename?: 'BlogList', id: string, title: string, tags: Array<string>, thumbnailImagePath: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } } };
+export type RecommendBlogListQueryVariables = Exact<{ [key: string]: never }>;
 
-export type RecommendBlogListQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type RecommendBlogListQuery = { __typename?: 'Query', recommendBlogList: { __typename?: 'RecommendBlogListConnection', nodes: Array<{ __typename?: 'BlogList', id: string, title: string, tags: Array<string>, thumbnailImagePath: string }> } };
+export type RecommendBlogListQuery = {
+  __typename?: 'Query';
+  recommendBlogList: {
+    __typename?: 'RecommendBlogListConnection';
+    nodes: Array<{
+      __typename?: 'BlogList';
+      id: string;
+      title: string;
+      tags: Array<string>;
+      thumbnailImagePath: string;
+    }>;
+  };
+};
 
 export type SignUpMutationVariables = Exact<{
   input: SignUp;
 }>;
 
-
-export type SignUpMutation = { __typename?: 'Mutation', signUp: { __typename?: 'User', name: string } };
-
+export type SignUpMutation = {
+  __typename?: 'Mutation';
+  signUp: { __typename?: 'User'; name: string };
+};
 
 export const BlogListDocument = gql`
-    query BlogList($pageNo: Int!, $limit: Int!) {
-  blogList(input: {pageNo: $pageNo, limit: $limit}) {
-    nodes {
-      id
-      title
-      tags
-      thumbnailImagePath
-    }
-    pageInfo {
-      totalCount
+  query BlogList($pageNo: Int!, $limit: Int!) {
+    blogList(input: { pageNo: $pageNo, limit: $limit }) {
+      nodes {
+        id
+        title
+        tags
+        thumbnailImagePath
+      }
+      pageInfo {
+        totalCount
+      }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useBlogListQuery__
@@ -151,29 +178,47 @@ export const BlogListDocument = gql`
  *   },
  * });
  */
-export function useBlogListQuery(baseOptions: Apollo.QueryHookOptions<BlogListQuery, BlogListQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<BlogListQuery, BlogListQueryVariables>(BlogListDocument, options);
-      }
-export function useBlogListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlogListQuery, BlogListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<BlogListQuery, BlogListQueryVariables>(BlogListDocument, options);
-        }
+export function useBlogListQuery(
+  baseOptions: Apollo.QueryHookOptions<BlogListQuery, BlogListQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<BlogListQuery, BlogListQueryVariables>(
+    BlogListDocument,
+    options
+  );
+}
+export function useBlogListLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    BlogListQuery,
+    BlogListQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<BlogListQuery, BlogListQueryVariables>(
+    BlogListDocument,
+    options
+  );
+}
 export type BlogListQueryHookResult = ReturnType<typeof useBlogListQuery>;
-export type BlogListLazyQueryHookResult = ReturnType<typeof useBlogListLazyQuery>;
-export type BlogListQueryResult = Apollo.QueryResult<BlogListQuery, BlogListQueryVariables>;
+export type BlogListLazyQueryHookResult = ReturnType<
+  typeof useBlogListLazyQuery
+>;
+export type BlogListQueryResult = Apollo.QueryResult<
+  BlogListQuery,
+  BlogListQueryVariables
+>;
 export const RecommendBlogListDocument = gql`
-    query RecommendBlogList {
-  recommendBlogList {
-    nodes {
-      id
-      title
-      tags
-      thumbnailImagePath
+  query RecommendBlogList {
+    recommendBlogList {
+      nodes {
+        id
+        title
+        tags
+        thumbnailImagePath
+      }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useRecommendBlogListQuery__
@@ -190,25 +235,51 @@ export const RecommendBlogListDocument = gql`
  *   },
  * });
  */
-export function useRecommendBlogListQuery(baseOptions?: Apollo.QueryHookOptions<RecommendBlogListQuery, RecommendBlogListQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<RecommendBlogListQuery, RecommendBlogListQueryVariables>(RecommendBlogListDocument, options);
-      }
-export function useRecommendBlogListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RecommendBlogListQuery, RecommendBlogListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<RecommendBlogListQuery, RecommendBlogListQueryVariables>(RecommendBlogListDocument, options);
-        }
-export type RecommendBlogListQueryHookResult = ReturnType<typeof useRecommendBlogListQuery>;
-export type RecommendBlogListLazyQueryHookResult = ReturnType<typeof useRecommendBlogListLazyQuery>;
-export type RecommendBlogListQueryResult = Apollo.QueryResult<RecommendBlogListQuery, RecommendBlogListQueryVariables>;
-export const SignUpDocument = gql`
-    mutation SignUp($input: SignUp!) {
-  signUp(input: $input) {
-    name
-  }
+export function useRecommendBlogListQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    RecommendBlogListQuery,
+    RecommendBlogListQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    RecommendBlogListQuery,
+    RecommendBlogListQueryVariables
+  >(RecommendBlogListDocument, options);
 }
-    `;
-export type SignUpMutationFn = Apollo.MutationFunction<SignUpMutation, SignUpMutationVariables>;
+export function useRecommendBlogListLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    RecommendBlogListQuery,
+    RecommendBlogListQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    RecommendBlogListQuery,
+    RecommendBlogListQueryVariables
+  >(RecommendBlogListDocument, options);
+}
+export type RecommendBlogListQueryHookResult = ReturnType<
+  typeof useRecommendBlogListQuery
+>;
+export type RecommendBlogListLazyQueryHookResult = ReturnType<
+  typeof useRecommendBlogListLazyQuery
+>;
+export type RecommendBlogListQueryResult = Apollo.QueryResult<
+  RecommendBlogListQuery,
+  RecommendBlogListQueryVariables
+>;
+export const SignUpDocument = gql`
+  mutation SignUp($input: SignUp!) {
+    signUp(input: $input) {
+      name
+    }
+  }
+`;
+export type SignUpMutationFn = Apollo.MutationFunction<
+  SignUpMutation,
+  SignUpMutationVariables
+>;
 
 /**
  * __useSignUpMutation__
@@ -227,10 +298,21 @@ export type SignUpMutationFn = Apollo.MutationFunction<SignUpMutation, SignUpMut
  *   },
  * });
  */
-export function useSignUpMutation(baseOptions?: Apollo.MutationHookOptions<SignUpMutation, SignUpMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<SignUpMutation, SignUpMutationVariables>(SignUpDocument, options);
-      }
+export function useSignUpMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    SignUpMutation,
+    SignUpMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<SignUpMutation, SignUpMutationVariables>(
+    SignUpDocument,
+    options
+  );
+}
 export type SignUpMutationHookResult = ReturnType<typeof useSignUpMutation>;
 export type SignUpMutationResult = Apollo.MutationResult<SignUpMutation>;
-export type SignUpMutationOptions = Apollo.BaseMutationOptions<SignUpMutation, SignUpMutationVariables>;
+export type SignUpMutationOptions = Apollo.BaseMutationOptions<
+  SignUpMutation,
+  SignUpMutationVariables
+>;

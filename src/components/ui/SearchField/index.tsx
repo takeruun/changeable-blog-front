@@ -1,5 +1,5 @@
-import commonClass, { CommonProps } from '../utilties/commonClass';
 import { BiSearchAlt } from 'react-icons/bi';
+import commonClass, { CommonProps } from '../utilties/commonClass';
 import styles from './styles.module.scss';
 
 export type Props = {
