@@ -21,68 +21,42 @@ export type Props = {
 
 const Pagination: React.FC<Props> = (props) => {
   const { currentPage, totalPageNumber, onPageChange } = props;
-  const pages: number[] = [];
+  const pages: Array<number> = [];
   for (let i = 0; i < totalPageNumber; i++) pages.push(i + 1);
 
   return (
     <div {...commonClass(props)} role='navigation'>
+      <IconButton
+        type={'button'}
+        mr={1}
+        IconComponent={GoChevronLeft}
+        onClick={() => {
+          onPageChange(currentPage - 1);
+        }}
+        disabled={currentPage == 1}
+      />
       {pages.map((page, i) => {
-        if (pages.length > 1 && (i == 0 || pages.length - 1 == i)) {
-          return i == 0 ? (
-            <>
-              <IconButton
-                type={'button'}
-                IconComponent={GoChevronLeft}
-                onClick={() => {
-                  if (currentPage != 1) onPageChange(currentPage - 1);
-                }}
-              />
-              <PageButton
-                current={page == currentPage}
-                ml={1}
-                mr={1}
-                onClick={() => {
-                  if (page != currentPage) onPageChange(page);
-                }}
-              >
-                {page}
-              </PageButton>
-            </>
-          ) : (
-            <>
-              <PageButton
-                current={page == currentPage}
-                mr={1}
-                onClick={() => {
-                  if (page != currentPage) onPageChange(page);
-                }}
-              >
-                {page}
-              </PageButton>
-              <IconButton
-                type={'button'}
-                IconComponent={GoChevronRight}
-                onClick={() => {
-                  if (currentPage != pages.length)
-                    onPageChange(currentPage + 1);
-                }}
-              />
-            </>
-          );
-        } else {
-          return (
-            <PageButton
-              current={page == currentPage}
-              mr={1}
-              onClick={() => {
-                if (page != currentPage) onPageChange(page);
-              }}
-            >
-              {page}
-            </PageButton>
-          );
-        }
+        return (
+          <PageButton
+            key={`page-${page}`}
+            current={page == currentPage}
+            mr={1}
+            onClick={() => {
+              if (page != currentPage) onPageChange(page);
+            }}
+          >
+            {page}
+          </PageButton>
+        );
       })}
+      <IconButton
+        type={'button'}
+        IconComponent={GoChevronRight}
+        onClick={() => {
+          onPageChange(currentPage + 1);
+        }}
+        disabled={currentPage == totalPageNumber}
+      />
     </div>
   );
 };
