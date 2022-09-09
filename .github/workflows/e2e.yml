@@ -1,0 +1,45 @@
+name: E2E
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  front_lint:
+    name: Frontend code lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: technote-space/get-diff-action@v6
+        id: check-diff
+        with:
+          PATTERNS: |
+            **/*
+      - uses: ./.github/actions/setup-node
+        if: steps.check-diff.outputs.diff
+      - name: Run lint
+        run: npm run lint
+        if: steps.check-diff.outputs.diff
+
+  front_e2e:
+    name: Frontend E2E test
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    env:
+      REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-node
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright e2e tests
+        run: yarn test:e2e
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
