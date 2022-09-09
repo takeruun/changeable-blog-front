@@ -35,6 +35,8 @@ jobs:
       - uses: ./.github/actions/setup-node
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Test mode build
+        run: MOCK_MODE=1 yarn build
       - name: Run Playwright e2e tests
         run: yarn test:e2e
       - uses: actions/upload-artifact@v2
