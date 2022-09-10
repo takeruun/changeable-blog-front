@@ -1,4 +1,5 @@
 import styles from './styles.module.scss';
+import SestionTitle from '@ui/SectionTitle';
 import BlogItem from '@ui/BlogItem';
 import PostPageLayout from 'src/components/layouts/PostPageLayout';
 import { BlogList } from '@generated/graphql';
@@ -12,6 +13,7 @@ const HomePageContainer: React.FC<Props> = (props) => {
 
   return (
     <PostPageLayout>
+      <SestionTitle title='人気記事' mb={1} />
       {blogItems.map((blogItem) => (
         <BlogItem
           id={blogItem.id}
