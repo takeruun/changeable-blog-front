@@ -19,7 +19,7 @@ const HomePageContainer: React.FC<Props> = (props) => {
           key={blogItem.id}
           tags={blogItem.tags.map((tag) => tag)}
           mb={3}
-          date={'2022年'}
+          date={blogItem.createdAt}
         />
       ))}
     </PostPageLayout>

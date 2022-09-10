@@ -23,6 +23,7 @@ export type Scalars = {
 
 export type BlogList = {
   __typename?: 'BlogList';
+  createdAt: Scalars['String'];
   id: Scalars['ID'];
   tags: Array<Scalars['String']>;
   thumbnailImagePath: Scalars['String'];
@@ -115,6 +116,7 @@ export type BlogListQuery = {
       title: string;
       tags: Array<string>;
       thumbnailImagePath: string;
+      createdAt: string;
     }>;
     pageInfo: { __typename?: 'PageInfo'; totalCount: number };
   };
@@ -132,6 +134,7 @@ export type RecommendBlogListQuery = {
       title: string;
       tags: Array<string>;
       thumbnailImagePath: string;
+      createdAt: string;
     }>;
   };
 };
@@ -153,6 +156,7 @@ export const BlogListDocument = gql`
         title
         tags
         thumbnailImagePath
+        createdAt
       }
       pageInfo {
         totalCount
@@ -215,6 +219,7 @@ export const RecommendBlogListDocument = gql`
         title
         tags
         thumbnailImagePath
+        createdAt
       }
     }
   }

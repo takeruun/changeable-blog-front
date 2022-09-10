@@ -5,6 +5,7 @@ query BlogList($pageNo: Int!, $limit: Int!) {
       title
       tags
       thumbnailImagePath
+      createdAt
     }
     pageInfo {
       totalCount
@@ -19,6 +20,7 @@ query RecommendBlogList {
       title
       tags
       thumbnailImagePath
+      createdAt
     }
   }
 }
