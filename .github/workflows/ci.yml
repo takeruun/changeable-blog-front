@@ -18,6 +18,10 @@ jobs:
       - uses: ./.github/actions/setup-node
       - name: Run test
         run: yarn test
+      - uses: ./.github/actions/notify-for-slack
+        with:
+          TITLE: Frontend Test
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
   front-lint:
     name: Frontend code lint
@@ -35,3 +39,7 @@ jobs:
       - name: Run lint
         run: yarn lint
         if: steps.check-diff.outputs.diff
+      - uses: ./.github/actions/notify-for-slack
+        with:
+          TITLE: Frontend Code Lint
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
