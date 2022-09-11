@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './styles.module.scss';
 import SectionTitle from '@ui/SectionTitle';
 import BlogItem from '@ui/BlogItem';
@@ -29,6 +30,13 @@ const HomePageContainer: React.FC<Props> = (props) => {
           date={blogItem.createdAt}
         />
       ))}
+      <FlexBox alignItems='flex-end' mt={2} mb={1}>
+        <SectionTitle title='その他記事' />
+        <HelpMessageIcon message='その他記事一覧' />
+      </FlexBox>
+      <div style={{ color: 'blue', textDecoration: 'underline' }}>
+        <Link href={'/b/page/1'}>記事一覧</Link>
+      </div>
     </PostPageLayout>
   );
 };
