@@ -1,0 +1,46 @@
+@import '@variable';
+
+.help__message {
+  position: relative;
+
+  .message__container {
+    position: absolute;
+    bottom: 90%;
+
+    .message {
+      position: relative;
+      display: inline-block;
+      margin: 0.75rem 0;
+      padding: 10px 5px;
+      width: 140px;
+      font-size: 12px;
+      background: #ebebeb;
+      text-align: left;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 6%;
+        margin-left: -8px;
+        border: 8px solid transparent;
+        border-top: 8px solid #ebebeb;
+      }
+    }
+  }
+}
+
+.help__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  line-height: 17px;
+  border-radius: 50%;
+  font-weight: 700;
+  color: var(--c-white);
+  background: var(--c-gray);
+  font-size: 10px;
+}
