@@ -1,6 +1,8 @@
 import styles from './styles.module.scss';
-import SestionTitle from '@ui/SectionTitle';
+import SectionTitle from '@ui/SectionTitle';
 import BlogItem from '@ui/BlogItem';
+import FlexBox from '@ui/FlexBox';
+import HelpMessageIcon from '@ui/HelpMessageIcon';
 import PostPageLayout from 'src/components/layouts/PostPageLayout';
 import { BlogList } from '@generated/graphql';
 
@@ -13,7 +15,10 @@ const HomePageContainer: React.FC<Props> = (props) => {
 
   return (
     <PostPageLayout>
-      <SestionTitle title='人気記事' mb={1} />
+      <FlexBox alignItems='flex-end' mb={1}>
+        <SectionTitle title='人気記事' />
+        <HelpMessageIcon message='人気記事一覧' />
+      </FlexBox>
       {blogItems.map((blogItem) => (
         <BlogItem
           id={blogItem.id}
