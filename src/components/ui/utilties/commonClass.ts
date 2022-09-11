@@ -10,11 +10,11 @@ const classNames = (props?: MarginProps): string =>
 
 const commonClass = (
   props: CommonProps,
-  className?: string
+  className = ''
 ): { 'data-test'?: string; className: string } => {
   return {
     'data-test': props['data-test'],
-    className: className + ' ' + classNames(props)
+    className: className + classNames(props)
   };
 };
 
