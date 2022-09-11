@@ -23,7 +23,7 @@
   &:hover {
     opacity: 0.9;
     background-color: var(--c-main);
-    color: #fff;
+    color: var(--c-white);
     transition: background-color 1s;
   }
 }

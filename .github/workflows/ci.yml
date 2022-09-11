@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches-ignore:
+      - main
+      - develop
+
+jobs:
+  front-test:
+    name: Frontend Test
+    env:
+      REACT_APP_API_URL: http://localhost:3000
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-node
+      - name: Run test
+        run: yarn test
+      - uses: ./.github/actions/notify-for-slack
+        with:
+          TITLE: Frontend Test
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  front-lint:
+    name: Frontend code lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: technote-space/get-diff-action@v6
+        id: check-diff
+        with:
+          PATTERNS: |
+            **/*
+      - uses: ./.github/actions/setup-node
+        if: steps.check-diff.outputs.diff
+      - name: Run lint
+        run: yarn lint
+        if: steps.check-diff.outputs.diff
+      - uses: ./.github/actions/notify-for-slack
+        with:
+          TITLE: Frontend Code Lint
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

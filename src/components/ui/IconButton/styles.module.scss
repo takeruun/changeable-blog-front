@@ -1,0 +1,22 @@
+@import '@variable';
+
+.icon_button {
+  position: relative;
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--c-sub);
+  border-radius: 30%;
+
+  &:disabled {
+    background: var(--c-disabled);
+    border-color: var(--c-disabled);
+  }
+}
+
+.icon {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

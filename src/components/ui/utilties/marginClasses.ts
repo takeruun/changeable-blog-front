@@ -44,7 +44,7 @@ export type MarginProps = {
 };
 
 const formatMarginSize = (ms: MarginSize): string =>
-  ms === 'auto' ? '-auto' : String(ms);
+  ms === 'auto' ? '-auto' : String(ms * 10);
 
 const marginClasses = ({ ma, mt, ml, mb, mr }: MarginProps): string => {
   return [

@@ -41,7 +41,7 @@ export type PaddingProps = {
 };
 
 const formatPaddingSize = (ms: PaddingSize): string =>
-  ms === 'auto' ? '-auto' : String(ms);
+  ms === 'auto' ? '-auto' : String(ms * 10);
 
 const paddingClasses = ({ pa, pt, pl, pb, pr }: PaddingProps): string => {
   return [

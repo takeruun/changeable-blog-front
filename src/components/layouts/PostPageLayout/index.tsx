@@ -1,5 +1,5 @@
-import Aside from 'src/components/layouts/Aside';
 import styles from './styles.module.scss';
+import Aside from 'src/components/layouts/Aside';
 
 type Props = {
   children: React.ReactNode;

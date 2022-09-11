@@ -1,11 +1,12 @@
 import '../styles/globals.scss';
+import { ApolloProvider } from '@apollo/client';
 import type { AppProps } from 'next/app';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { client } from 'src/lib/apollo-client';
 
-const client = new ApolloClient({
-  uri: 'http://localhost:3000/query',
-  cache: new InMemoryCache()
-});
+if (process.env.MOCK_MODE === '1') {
+  const MockServer = () => import('test/mock/worker');
+  MockServer();
+}
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

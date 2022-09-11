@@ -8,6 +8,9 @@
   --c-back: #f0fdec;
   --c-line: #c4c4c4;
   --c-border: #c8c8c8;
+  --c-white: #fff;
+  --c-disabled: #dddddd;
+  --c-gray: #a3a3a3;
 
   --f-family: Hiragino Sans CNS;
 }
@@ -27,4 +30,37 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+$numbers: (
+  '25': 0.25rem,
+  '5': 0.5rem,
+  '10': 1rem,
+  '15': 1.5rem,
+  '20': 2rem,
+  '30': 3rem,
+  '40': 4rem,
+  '50': 5rem,
+  '60': 6rem,
+  '70': 7rem,
+  '80': 8rem,
+  '90': 9rem
+);
+
+@each $margin, $number in $numbers {
+  .mt-#{$margin} {
+    margin-top: $number;
+  }
+
+  .ml-#{$margin} {
+    margin-left: $number;
+  }
+
+  .mb-#{$margin} {
+    margin-bottom: $number;
+  }
+
+  .mr-#{$margin} {
+    margin-right: $number;
+  }
 }
