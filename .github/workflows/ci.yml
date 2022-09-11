@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
       - name: Run test
-        run: yarn test ./src/**/__test__/**.test.*
+        run: yarn test
 
   front-lint:
     name: Frontend code lint
