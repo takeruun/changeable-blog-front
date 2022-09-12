@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
+    "cheerio": "^1.0.0-rc.12",
     "graphql": "^16.5.0",
     "next": "12.2.3",
     "react": "18.2.0",
