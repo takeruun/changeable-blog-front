@@ -56,6 +56,18 @@ export type MutationSignUpArgs = {
   input: SignUp;
 };
 
+export type NormalBlog = {
+  __typename?: 'NormalBlog';
+  body: Scalars['String'];
+  createdAt: Scalars['String'];
+  description: Scalars['String'];
+  id: Scalars['ID'];
+  tags: Array<Scalars['String']>;
+  thumbnailImagePath: Scalars['String'];
+  title: Scalars['String'];
+  updateAt: Scalars['String'];
+};
+
 export type PageCondition = {
   limit: Scalars['Int'];
   pageNo: Scalars['Int'];
@@ -74,11 +86,16 @@ export type Query = {
   _empty?: Maybe<Scalars['String']>;
   blogList: BlogListConnection;
   getMyUser: User;
+  normalBlog: NormalBlog;
   recommendBlogList: RecommendBlogListConnection;
 };
 
 export type QueryBlogListArgs = {
   input: PageCondition;
+};
+
+export type QueryNormalBlogArgs = {
+  id: Scalars['Int'];
 };
 
 export type RecommendBlogListConnection = {
@@ -136,6 +153,25 @@ export type RecommendBlogListQuery = {
       thumbnailImagePath: string;
       createdAt: string;
     }>;
+  };
+};
+
+export type NormalBlogQueryVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+export type NormalBlogQuery = {
+  __typename?: 'Query';
+  normalBlog: {
+    __typename?: 'NormalBlog';
+    id: string;
+    title: string;
+    description: string;
+    body: string;
+    thumbnailImagePath: string;
+    tags: Array<string>;
+    createdAt: string;
+    updateAt: string;
   };
 };
 
@@ -273,6 +309,69 @@ export type RecommendBlogListLazyQueryHookResult = ReturnType<
 export type RecommendBlogListQueryResult = Apollo.QueryResult<
   RecommendBlogListQuery,
   RecommendBlogListQueryVariables
+>;
+export const NormalBlogDocument = gql`
+  query NormalBlog($id: Int!) {
+    normalBlog(id: $id) {
+      id
+      title
+      description
+      body
+      thumbnailImagePath
+      tags
+      createdAt
+      updateAt
+    }
+  }
+`;
+
+/**
+ * __useNormalBlogQuery__
+ *
+ * To run a query within a React component, call `useNormalBlogQuery` and pass it any options that fit your needs.
+ * When your component renders, `useNormalBlogQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNormalBlogQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useNormalBlogQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    NormalBlogQuery,
+    NormalBlogQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<NormalBlogQuery, NormalBlogQueryVariables>(
+    NormalBlogDocument,
+    options
+  );
+}
+export function useNormalBlogLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    NormalBlogQuery,
+    NormalBlogQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<NormalBlogQuery, NormalBlogQueryVariables>(
+    NormalBlogDocument,
+    options
+  );
+}
+export type NormalBlogQueryHookResult = ReturnType<typeof useNormalBlogQuery>;
+export type NormalBlogLazyQueryHookResult = ReturnType<
+  typeof useNormalBlogLazyQuery
+>;
+export type NormalBlogQueryResult = Apollo.QueryResult<
+  NormalBlogQuery,
+  NormalBlogQueryVariables
 >;
 export const SignUpDocument = gql`
   mutation SignUp($input: SignUp!) {

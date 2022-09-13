@@ -24,3 +24,16 @@ query RecommendBlogList {
     }
   }
 }
+
+query NormalBlog($id: Int!) {
+  normalBlog(id: $id) {
+    id
+    title
+    description
+    body
+    thumbnailImagePath
+    tags
+    createdAt
+    updateAt
+  }
+}
