@@ -1,5 +1,5 @@
 import styles from './styles.module.scss';
-import { useBPageState } from './hooks';
+import { useBPage } from './hooks';
 import BlogItem from '@ui/BlogItem';
 import PostPageLayout from 'src/components/layouts/PostPageLayout';
 import { BlogList } from '@generated/graphql';
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const BPageContainer: React.FC<Props> = (props) => {
-  const { handlePageChange } = useBPageState();
+  const { handlePageChange, handleToBlogPage } = useBPage();
   const { blogItems, currentPage, totalCount } = props;
   const totalPageNumber = Math.ceil(totalCount / 5);
 
@@ -25,7 +25,8 @@ const BPageContainer: React.FC<Props> = (props) => {
           key={blogItem.id}
           tags={blogItem.tags.map((tag) => tag)}
           mb={3}
-          date={'2022年'}
+          date={blogItem.createdAt}
+          toBlogPage={handleToBlogPage}
         />
       ))}
       <div className={styles.pagination}>
