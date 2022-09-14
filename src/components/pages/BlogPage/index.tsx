@@ -4,6 +4,7 @@ import { NormalBlog } from '@generated/graphql';
 import PostPageLayout from 'src/components/layouts/PostPageLayout';
 import TableOfContents from '@ui/TableOfContents';
 import BlogTitle from '@ui/BlogTitle';
+import HighlightBody from '@ui/HighlightBody';
 
 type Props = {
   blog: NormalBlog;
@@ -42,12 +43,7 @@ const BlogPageContainer: React.FC<Props> = (props) => {
           />
         </div>
         <TableOfContents tableOfContents={toc} />
-        <div
-          className={styles.contents}
-          dangerouslySetInnerHTML={{
-            __html: blog.body
-          }}
-        />
+        <HighlightBody body={blog.body} />
       </div>
     </PostPageLayout>
   );
