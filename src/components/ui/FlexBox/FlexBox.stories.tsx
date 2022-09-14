@@ -16,7 +16,7 @@ export default {
   }
 } as ComponentMeta<typeof FlexBox>;
 
-const PageButtonTemplate: ComponentStory<typeof FlexBox> = (args) => {
+const FlexBoxTemplate: ComponentStory<typeof FlexBox> = (args) => {
   return (
     <FlexBox {...args}>
       <SectionTitle title='人気記事' />
@@ -25,7 +25,7 @@ const PageButtonTemplate: ComponentStory<typeof FlexBox> = (args) => {
   );
 };
 
-export const Default = PageButtonTemplate.bind({});
+export const Default = FlexBoxTemplate.bind({});
 const defaultArgs: Props = {
   children: <></>,
   alignItems: 'flex-end'

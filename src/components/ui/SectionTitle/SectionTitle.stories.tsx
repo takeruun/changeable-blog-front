@@ -14,15 +14,11 @@ export default {
   }
 } as ComponentMeta<typeof SectionTitle>;
 
-const PageButtonTemplate: ComponentStory<typeof SectionTitle> = (args) => {
-  return (
-    <div>
-      <SectionTitle {...args} />
-    </div>
-  );
+const SectionTemplate: ComponentStory<typeof SectionTitle> = (args) => {
+  return <SectionTitle {...args} />;
 };
 
-export const Default = PageButtonTemplate.bind({});
+export const Default = SectionTemplate.bind({});
 const defaultArgs: Props = {
   title: 'セクションタイトル'
 };
