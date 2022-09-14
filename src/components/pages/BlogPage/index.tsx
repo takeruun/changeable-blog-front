@@ -3,6 +3,7 @@ import styles from './styles.module.scss';
 import { NormalBlog } from '@generated/graphql';
 import PostPageLayout from 'src/components/layouts/PostPageLayout';
 import TableOfContents from '@ui/TableOfContents';
+import BlogTitle from '@ui/BlogTitle';
 
 type Props = {
   blog: NormalBlog;
@@ -19,7 +20,7 @@ const BlogPageContainer: React.FC<Props> = (props) => {
   return (
     <PostPageLayout>
       <div className={styles.container}>
-        <h1>{blog.title}</h1>
+        <BlogTitle title={blog.title} mb={1} />
         <div className={styles.tags}>
           {blog.tags.map((tag) => (
             <span key={`tag-${tag}`} className={styles.tag}>
