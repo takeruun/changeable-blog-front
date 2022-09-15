@@ -1,4 +1,4 @@
-import { act, screen, renderHook, waitFor } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 import { useRouter } from 'next/router';
 import { useTopPage } from '..';
 
@@ -8,7 +8,7 @@ jest.mock('next/router', () => ({
 
 describe('useTopPage', () => {
   describe('handleToBlogPage', () => {
-    test('ブログページへ遷移できる', async () => {
+    test('ブログページへ遷移できる', () => {
       const push = jest.fn();
       (useRouter as jest.Mock).mockImplementation(() => ({ push }));
 
