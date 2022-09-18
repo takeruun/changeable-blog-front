@@ -52,9 +52,9 @@ export const useBlogPage = () => {
       if (blogMode === 'normal') getBlog({ variables: { id } });
       else if (blogMode === 'night') getNightBlog({ variables: { id } });
 
-      const blog = normalData?.blog ?? nightData?.blog;
-      if (blog) {
-        const toc = createToc(blog.body);
+      const body = normalData?.blog.body ?? nightData?.blog.nightBody;
+      if (body) {
+        const toc = createToc(body);
         setToc(toc);
       }
     }
