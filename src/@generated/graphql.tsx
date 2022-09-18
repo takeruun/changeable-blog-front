@@ -21,6 +21,20 @@ export type Scalars = {
   Float: number;
 };
 
+export type Blog = {
+  __typename?: 'Blog';
+  body: Scalars['String'];
+  createdAt: Scalars['String'];
+  description: Scalars['String'];
+  id: Scalars['ID'];
+  mobileBody: Scalars['String'];
+  nightBody: Scalars['String'];
+  tags: Array<Scalars['String']>;
+  thumbnailImagePath: Scalars['String'];
+  title: Scalars['String'];
+  updateAt: Scalars['String'];
+};
+
 export type BlogList = {
   __typename?: 'BlogList';
   createdAt: Scalars['String'];
@@ -56,18 +70,6 @@ export type MutationSignUpArgs = {
   input: SignUp;
 };
 
-export type NormalBlog = {
-  __typename?: 'NormalBlog';
-  body: Scalars['String'];
-  createdAt: Scalars['String'];
-  description: Scalars['String'];
-  id: Scalars['ID'];
-  tags: Array<Scalars['String']>;
-  thumbnailImagePath: Scalars['String'];
-  title: Scalars['String'];
-  updateAt: Scalars['String'];
-};
-
 export type PageCondition = {
   limit: Scalars['Int'];
   pageNo: Scalars['Int'];
@@ -84,18 +86,18 @@ export type PageInfo = {
 export type Query = {
   __typename?: 'Query';
   _empty?: Maybe<Scalars['String']>;
+  blog: Blog;
   blogList: BlogListConnection;
   getMyUser: User;
-  normalBlog: NormalBlog;
   recommendBlogList: RecommendBlogListConnection;
+};
+
+export type QueryBlogArgs = {
+  id: Scalars['Int'];
 };
 
 export type QueryBlogListArgs = {
   input: PageCondition;
-};
-
-export type QueryNormalBlogArgs = {
-  id: Scalars['Int'];
 };
 
 export type RecommendBlogListConnection = {
@@ -162,12 +164,31 @@ export type NormalBlogQueryVariables = Exact<{
 
 export type NormalBlogQuery = {
   __typename?: 'Query';
-  normalBlog: {
-    __typename?: 'NormalBlog';
+  blog: {
+    __typename?: 'Blog';
     id: string;
     title: string;
     description: string;
     body: string;
+    thumbnailImagePath: string;
+    tags: Array<string>;
+    createdAt: string;
+    updateAt: string;
+  };
+};
+
+export type NightBlogQueryVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+export type NightBlogQuery = {
+  __typename?: 'Query';
+  blog: {
+    __typename?: 'Blog';
+    id: string;
+    title: string;
+    description: string;
+    nightBody: string;
     thumbnailImagePath: string;
     tags: Array<string>;
     createdAt: string;
@@ -312,7 +333,7 @@ export type RecommendBlogListQueryResult = Apollo.QueryResult<
 >;
 export const NormalBlogDocument = gql`
   query NormalBlog($id: Int!) {
-    normalBlog(id: $id) {
+    blog(id: $id) {
       id
       title
       description
@@ -372,6 +393,66 @@ export type NormalBlogLazyQueryHookResult = ReturnType<
 export type NormalBlogQueryResult = Apollo.QueryResult<
   NormalBlogQuery,
   NormalBlogQueryVariables
+>;
+export const NightBlogDocument = gql`
+  query NightBlog($id: Int!) {
+    blog(id: $id) {
+      id
+      title
+      description
+      nightBody
+      thumbnailImagePath
+      tags
+      createdAt
+      updateAt
+    }
+  }
+`;
+
+/**
+ * __useNightBlogQuery__
+ *
+ * To run a query within a React component, call `useNightBlogQuery` and pass it any options that fit your needs.
+ * When your component renders, `useNightBlogQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNightBlogQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useNightBlogQuery(
+  baseOptions: Apollo.QueryHookOptions<NightBlogQuery, NightBlogQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<NightBlogQuery, NightBlogQueryVariables>(
+    NightBlogDocument,
+    options
+  );
+}
+export function useNightBlogLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    NightBlogQuery,
+    NightBlogQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<NightBlogQuery, NightBlogQueryVariables>(
+    NightBlogDocument,
+    options
+  );
+}
+export type NightBlogQueryHookResult = ReturnType<typeof useNightBlogQuery>;
+export type NightBlogLazyQueryHookResult = ReturnType<
+  typeof useNightBlogLazyQuery
+>;
+export type NightBlogQueryResult = Apollo.QueryResult<
+  NightBlogQuery,
+  NightBlogQueryVariables
 >;
 export const SignUpDocument = gql`
   mutation SignUp($input: SignUp!) {

@@ -26,11 +26,24 @@ query RecommendBlogList {
 }
 
 query NormalBlog($id: Int!) {
-  normalBlog(id: $id) {
+  blog(id: $id) {
     id
     title
     description
     body
+    thumbnailImagePath
+    tags
+    createdAt
+    updateAt
+  }
+}
+
+query NightBlog($id: Int!) {
+  blog(id: $id) {
+    id
+    title
+    description
+    nightBody
     thumbnailImagePath
     tags
     createdAt
