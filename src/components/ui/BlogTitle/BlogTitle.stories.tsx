@@ -1,25 +1,25 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { commonArgsType, commonParameters } from '../utilties/commonStorybook';
-import SectionTitle, { Props } from './index';
+import BlogTitle, { Props } from './index';
 
 export default {
-  title: 'SectionTitle',
-  component: SectionTitle,
+  title: 'BlogTitle',
+  component: BlogTitle,
   argTypes: {
     ...commonArgsType
   },
   parameters: {
     ...commonParameters.parameters
   }
-} as ComponentMeta<typeof SectionTitle>;
+} as ComponentMeta<typeof BlogTitle>;
 
-const SectionTemplate: ComponentStory<typeof SectionTitle> = (args) => {
-  return <SectionTitle {...args} />;
+const BlogTitleTemplate: ComponentStory<typeof BlogTitle> = (args) => {
+  return <BlogTitle {...args} />;
 };
 
-export const Default = SectionTemplate.bind({});
+export const Default = BlogTitleTemplate.bind({});
 const defaultArgs: Props = {
-  title: 'セクションタイトル'
+  title: 'title'
 };
 Default.args = defaultArgs;

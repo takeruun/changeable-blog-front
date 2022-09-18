@@ -19,7 +19,7 @@ export default {
   }
 } as ComponentMeta<typeof SearchField>;
 
-const BlogItemTemplate: ComponentStory<typeof SearchField> = (args) => {
+const SearchFieldTemplate: ComponentStory<typeof SearchField> = (args) => {
   const [value, setValue] = React.useState(args.value ?? '');
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (e) =>
     setValue(e.target.value);
@@ -31,7 +31,7 @@ const BlogItemTemplate: ComponentStory<typeof SearchField> = (args) => {
   );
 };
 
-export const Default = BlogItemTemplate.bind({});
+export const Default = SearchFieldTemplate.bind({});
 const defaultArgs: Props = {
   value: '',
   placeholder: '検索'

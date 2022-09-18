@@ -12,7 +12,8 @@
       display: inline-block;
       margin: 0.75rem 0;
       padding: 10px 5px;
-      width: 140px;
+      min-width: 90px;
+      width: auto;
       font-size: 12px;
       background: #ebebeb;
       text-align: left;
@@ -40,7 +41,7 @@
   line-height: 17px;
   border-radius: 50%;
   font-weight: 700;
-  color: var(--c-white);
-  background: var(--c-gray);
+  color: white;
+  background: #bbbbbb;
   font-size: 10px;
 }

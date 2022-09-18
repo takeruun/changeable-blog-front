@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from './styles.module.scss';
+import { useTopPage } from './hooks';
 import SectionTitle from '@ui/SectionTitle';
 import BlogItem from '@ui/BlogItem';
 import FlexBox from '@ui/FlexBox';
@@ -13,6 +14,7 @@ type Props = {
 
 const HomePageContainer: React.FC<Props> = (props) => {
   const { blogItems } = props;
+  const { handleToBlogPage } = useTopPage();
 
   return (
     <PostPageLayout>
@@ -28,6 +30,7 @@ const HomePageContainer: React.FC<Props> = (props) => {
           tags={blogItem.tags.map((tag) => tag)}
           mb={3}
           date={blogItem.createdAt}
+          toBlogPage={handleToBlogPage}
         />
       ))}
       <FlexBox alignItems='flex-end' mt={2} mb={1}>

@@ -15,7 +15,9 @@ export default {
   }
 } as ComponentMeta<typeof HelpMessageIcon>;
 
-const PageButtonTemplate: ComponentStory<typeof HelpMessageIcon> = (args) => {
+const HelpMessageIconTemplate: ComponentStory<typeof HelpMessageIcon> = (
+  args
+) => {
   return (
     <div style={{ marginTop: '30px' }}>
       <HelpMessageIcon {...args} />
@@ -23,7 +25,7 @@ const PageButtonTemplate: ComponentStory<typeof HelpMessageIcon> = (args) => {
   );
 };
 
-export const Default = PageButtonTemplate.bind({});
+export const Default = HelpMessageIconTemplate.bind({});
 const defaultArgs: Props = {
   message: 'メッセージ'
 };

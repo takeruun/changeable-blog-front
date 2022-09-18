@@ -8,25 +8,29 @@ export type Props = {
    */
   id: string;
   /**
-   * Blog タイトル
+   * タイトル の指定
    */
   title: string;
   /**
-   * Blog タグ
+   * タグ の指定
    */
   tags: string[];
   /**
-   * Blog 投稿日時
+   * 投稿日時 の指定
    */
   date: string;
   /**
-   * Blog サムネ画像URL
+   * サムネ画像URL の指定
    */
   imagePath?: string;
+  /**
+   * ブログ詳細ページへ遷移する実行関数 の指定
+   */
+  toBlogPage?: (id: string) => void;
 } & CommonProps;
 
 const BlogItem: React.FC<Props> = (props: Props) => {
-  const { id, title, tags, date, imagePath } = props;
+  const { id, title, tags, date, imagePath, toBlogPage } = props;
 
   return (
     <div {...commonClass(props, styles.container)}>
@@ -37,10 +41,19 @@ const BlogItem: React.FC<Props> = (props: Props) => {
           layout='fill'
           objectFit='contain'
           alt={`${id}の画像`}
+          onClick={() => {
+            if (toBlogPage) toBlogPage(id);
+          }}
         />
       </div>
       <div className={styles.content}>
-        <h3>{title}</h3>
+        <h3
+          onClick={() => {
+            if (toBlogPage) toBlogPage(id);
+          }}
+        >
+          {title}
+        </h3>
         <div className={styles.sub__content}>
           <div className={styles.tags}>
             {tags.map((tag) => (

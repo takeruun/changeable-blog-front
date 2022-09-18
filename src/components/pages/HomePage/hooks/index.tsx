@@ -1,13 +1,8 @@
 import { useCallback } from 'react';
 import { useRouter } from 'next/router';
 
-export const useBPage = () => {
+export const useTopPage = () => {
   const router = useRouter();
-
-  const handlePageChange = useCallback(
-    (page: number) => router.push(`/b/page/${page}`),
-    [router]
-  );
 
   const handleToBlogPage = useCallback(
     (id: string) => router.push(`/b/${id}`),
@@ -15,7 +10,6 @@ export const useBPage = () => {
   );
 
   const store = {
-    handlePageChange,
     handleToBlogPage
   };
 
