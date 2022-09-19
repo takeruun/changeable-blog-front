@@ -109,7 +109,7 @@ describe('useBlogPage', () => {
                   tags: ['tag'],
                   thumbnailImagePath: 'thumbnailImagePath',
                   title: 'title',
-                  updateAt: '2022-01-12'
+                  updatedAt: '2022-01-12'
                 }
               }
             }
@@ -191,7 +191,7 @@ describe('useBlogPage', () => {
                   tags: ['tag'],
                   thumbnailImagePath: 'thumbnailImagePath',
                   title: 'title',
-                  updateAt: '2022-01-12'
+                  updatedAt: '2022-01-12'
                 }
               }
             }

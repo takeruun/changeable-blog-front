@@ -34,7 +34,7 @@ query NormalBlog($id: Int!) {
     thumbnailImagePath
     tags
     createdAt
-    updateAt
+    updatedAt
   }
 }
 
@@ -47,6 +47,6 @@ query NightBlog($id: Int!) {
     thumbnailImagePath
     tags
     createdAt
-    updateAt
+    updatedAt
   }
 }

@@ -23,7 +23,7 @@ const BlogPageContainer: React.FC = () => {
           </div>
           <div className={styles.date}>
             <div className={styles.date__create}>作成日：{blog.createdAt}</div>
-            <div className={styles.date__update}>更新日：{blog.updateAt}</div>
+            <div className={styles.date__update}>更新日：{blog.updatedAt}</div>
           </div>
           <div className={styles.image__content}>
             <Image

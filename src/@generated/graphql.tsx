@@ -32,7 +32,7 @@ export type Blog = {
   tags: Array<Scalars['String']>;
   thumbnailImagePath: Scalars['String'];
   title: Scalars['String'];
-  updateAt: Scalars['String'];
+  updatedAt: Scalars['String'];
 };
 
 export type BlogList = {
@@ -173,7 +173,7 @@ export type NormalBlogQuery = {
     thumbnailImagePath: string;
     tags: Array<string>;
     createdAt: string;
-    updateAt: string;
+    updatedAt: string;
   };
 };
 
@@ -192,7 +192,7 @@ export type NightBlogQuery = {
     thumbnailImagePath: string;
     tags: Array<string>;
     createdAt: string;
-    updateAt: string;
+    updatedAt: string;
   };
 };
 
@@ -341,7 +341,7 @@ export const NormalBlogDocument = gql`
       thumbnailImagePath
       tags
       createdAt
-      updateAt
+      updatedAt
     }
   }
 `;
@@ -404,7 +404,7 @@ export const NightBlogDocument = gql`
       thumbnailImagePath
       tags
       createdAt
-      updateAt
+      updatedAt
     }
   }
 `;
