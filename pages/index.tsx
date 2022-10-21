@@ -1,4 +1,3 @@
-import type { NextPage, GetStaticProps } from 'next';
 import { client } from 'src/lib/apollo-client';
 import BaseLayout from 'src/components/layouts/BaseLayout';
 import HomepageContainer from 'src/components/pages/HomePage';
@@ -7,6 +6,7 @@ import {
   RecommendBlogListDocument,
   RecommendBlogListQuery
 } from '@generated/graphql';
+import type { NextPage, GetStaticProps } from 'next';
 
 type Props = {
   blogList: BlogList[];
