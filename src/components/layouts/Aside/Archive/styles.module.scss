@@ -1,0 +1,29 @@
+@import '@variable';
+
+.container {
+  width: 100%;
+  h6 {
+    font-size: 12px;
+  }
+}
+
+.bar {
+  height: 5px;
+  background-color: var(--c-main);
+}
+
+.archive {
+  cursor: pointer;
+  padding: 10px 20px;
+
+  &:nth-child(even) {
+    background-color: var(--c-sub);
+  }
+
+  &:hover {
+    opacity: 0.9;
+    background-color: var(--c-main);
+    color: var(--c-white);
+    transition: background-color 1s;
+  }
+}

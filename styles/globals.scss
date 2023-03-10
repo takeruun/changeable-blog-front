@@ -1,0 +1,67 @@
+@import 'destyle.css';
+
+:root {
+  --c-main: #36aa28;
+  --c-sub: #91de89;
+  --c-primary: #00ee97;
+  --c-error: #ef5e0c;
+  --c-back: #f0fdec;
+  --c-line: #c4c4c4;
+  --c-border: #c8c8c8;
+  --c-white: #fff;
+  --c-disabled: #dddddd;
+  --c-gray: #6f6f6f;
+  --c-black: #3a3a3a;
+
+  --f-family: Hiragino Sans CNS;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+$numbers: (
+  '25': 0.25rem,
+  '5': 0.5rem,
+  '10': 1rem,
+  '15': 1.5rem,
+  '20': 2rem,
+  '30': 3rem,
+  '40': 4rem,
+  '50': 5rem,
+  '60': 6rem,
+  '70': 7rem,
+  '80': 8rem,
+  '90': 9rem
+);
+
+@each $margin, $number in $numbers {
+  .mt-#{$margin} {
+    margin-top: $number;
+  }
+
+  .ml-#{$margin} {
+    margin-left: $number;
+  }
+
+  .mb-#{$margin} {
+    margin-bottom: $number;
+  }
+
+  .mr-#{$margin} {
+    margin-right: $number;
+  }
+}

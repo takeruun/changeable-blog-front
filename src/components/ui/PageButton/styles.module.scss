@@ -1,0 +1,20 @@
+@import '@variable';
+
+@mixin page_button() {
+  padding: 0 8px;
+  min-width: 2rem;
+  height: 2rem;
+  text-align: center;
+  border: 1px solid var(--c-sub);
+  border-radius: 30%;
+}
+
+.page_button {
+  @include page_button;
+}
+
+.page_button__current {
+  @include page_button;
+  background-color: var(--c-sub);
+  color: var(--c-white);
+}

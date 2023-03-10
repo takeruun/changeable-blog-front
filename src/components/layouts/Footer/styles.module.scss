@@ -1,0 +1,46 @@
+@import '@variable';
+
+.footer {
+  width: 100%;
+}
+
+.main {
+  height: 140px;
+  background-color: var(--c-main);
+  padding: 20px 140px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 3%;
+  color: var(--c-white);
+}
+
+.left__logo {
+  h1 {
+    font-size: 20px;
+    letter-spacing: 0.2rem;
+    font-weight: bold;
+  }
+
+  p {
+    padding-top: 5px;
+    font-size: 12px;
+  }
+}
+
+.nav {
+  h4 {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  li {
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  li:last-child {
+    margin-bottom: 0px;
+  }
+}

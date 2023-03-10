@@ -1,0 +1,65 @@
+@import '@variable';
+
+.container {
+  width: 100%;
+  h6 {
+    font-size: 12px;
+  }
+}
+
+.bar {
+  height: 5px;
+  background-color: var(--c-main);
+}
+
+.profile {
+  border: 1px solid var(--c-border);
+  border-top: 0px;
+
+  &__container {
+    padding: 30px 20px;
+  }
+
+  &__image {
+    width: 60px;
+    margin: 0 auto;
+  }
+
+  .divider {
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid var(--c-main);
+  }
+
+  &__body {
+    letter-spacing: 0.2em;
+    color: var(--c-main);
+    margin: 0 auto;
+  }
+
+  &__name {
+    text-align: center;
+  }
+
+  &__eng__name {
+    letter-spacing: 0.1em;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .sns {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+
+    .icon {
+      margin-right: 5px;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+}

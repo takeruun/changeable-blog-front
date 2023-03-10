@@ -1,0 +1,52 @@
+query BlogList($pageNo: Int!, $limit: Int!) {
+  blogList(input: { pageNo: $pageNo, limit: $limit }) {
+    nodes {
+      id
+      title
+      tags
+      thumbnailImagePath
+      createdAt
+    }
+    pageInfo {
+      totalCount
+    }
+  }
+}
+
+query RecommendBlogList {
+  recommendBlogList {
+    nodes {
+      id
+      title
+      tags
+      thumbnailImagePath
+      createdAt
+    }
+  }
+}
+
+query NormalBlog($id: Int!) {
+  blog(id: $id) {
+    id
+    title
+    description
+    body
+    thumbnailImagePath
+    tags
+    createdAt
+    updatedAt
+  }
+}
+
+query NightBlog($id: Int!) {
+  blog(id: $id) {
+    id
+    title
+    description
+    nightBody
+    thumbnailImagePath
+    tags
+    createdAt
+    updatedAt
+  }
+}
