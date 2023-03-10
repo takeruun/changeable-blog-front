@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useLazyQuery } from '@apollo/client';
 import * as cheerio from 'cheerio';
@@ -47,16 +47,17 @@ export const useBlogPage = () => {
   const { blogMode } = useBlogMode({ windowSize });
 
   useEffect(() => {
-    if (router.isReady) {
-      const id = Number(router.query.blogId);
-      if (blogMode === 'normal') getBlog({ variables: { id } });
-      else if (blogMode === 'night') getNightBlog({ variables: { id } });
+    if (!router.isReady) return;
 
-      const body = normalData?.blog.body ?? nightData?.blog.nightBody;
-      if (body) {
-        const toc = createToc(body);
-        setToc(toc);
-      }
+    const id = Number(router.query.blogId);
+    if (blogMode === 'normal') getBlog({ variables: { id } });
+    else if (blogMode === 'night') getNightBlog({ variables: { id } });
+
+    const body =
+      blogMode === 'normal' ? normalData?.blog.body : nightData?.blog.nightBody;
+    if (body) {
+      const toc = createToc(body);
+      setToc(toc);
     }
   }, [
     router.isReady,
@@ -69,9 +70,9 @@ export const useBlogPage = () => {
   ]);
 
   return {
-    blog: normalData?.blog ?? nightData?.blog,
+    blog: blogMode === 'normal' ? normalData?.blog : nightData?.blog,
     toc,
     loading: normalLoading || nightLoading,
-    error: normalError ?? nightError
+    error: normalError || nightError
   };
 };
